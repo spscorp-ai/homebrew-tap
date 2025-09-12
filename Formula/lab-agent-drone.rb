@@ -28,12 +28,16 @@ class LabAgentDrone < Formula
 
   depends_on "git" # Required for git repository detection
 
+  conflicts_with "lab-agent-drone-latest", because: "both install lab-agent-drone binary"
+  conflicts_with "lab-agent-drone-rc", because: "both install lab-agent-drone binary"
+
   def install
     bin.install "lab-agent-drone"
     
     # Install default configuration template
     (etc/"lab-agent-drone").mkpath
-    (etc/"lab-agent-drone/config.toml.example").write config_template
+    config_file = etc/"lab-agent-drone/config.toml.example"
+    config_file.write config_template unless config_file.exist?
     
     # Install completion scripts if they exist
     if (buildpath/"completions").exist?

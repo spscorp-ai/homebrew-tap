@@ -2,42 +2,41 @@ class LabAgentDroneLatest < Formula
   desc "Fault-tolerant RPC agent drone for executing coding commands (Latest/Development) (Stable)"
   homepage "https://github.com/spscorp/lab-agent-drone"
   license "MIT"
-  version "0.1.4-alpha.30"
+  version "0.1.5-alpha.1"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-darwin-arm64.tar.gz"
-      sha256 "147fdcb4bf87bc8466a31fd02e66454b0219bb1b7c45715ac81f6bc662ff266b"
+      sha256 "66bcc5eab668d24eac0b90a6e6ac85fe76e4522a679d32a111f48807bb1bb88c"
     end
     if Hardware::CPU.intel?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-darwin-amd64.tar.gz"
-      sha256 "1b015b5de35a2f04f94ab6ffed44a5399b37ebb4cfcc5e790da3c9b3b2f15dfa"
+      sha256 "31358bcac6b966b88c13ea9c4a3697f1921b11f754269c8002d1485bfac5c2a9"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-linux-arm64.tar.gz"
-      sha256 "96a7d77873d63d708561030371f83339e1025d086a7b5377d92cc121e359517a"
+      sha256 "1576880ef3a5e94ac812ec716a4e8fe0c40c1ba9224568d385a6bcbd3b74d370"
     end
     if Hardware::CPU.intel?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-linux-amd64.tar.gz"
-      sha256 "7ed9f87badff1bc9156182e1e3a0edbff8e0c33cf7b91ae60674ebd1af9ba492"
+      sha256 "21d4d4a478e428e814144405ca8fb2b38e2dd9bb27abae746ff15885244b11b0"
     end
   end
 
   depends_on "git" # Required for git repository detection
 
-  conflicts_with "lab-agent-drone", because: "both install lab-agent-drone binary"
   conflicts_with "lab-agent-drone-rc", because: "both install lab-agent-drone binary"
+  conflicts_with "lab-agent-drone-latest", because: "both install lab-agent-drone binary"
 
   def install
     bin.install "lab-agent-drone"
     
     # Install default configuration template
     (etc/"lab-agent-drone").mkpath
-    config_file = etc/"lab-agent-drone/config.toml.example"
-    config_file.write config_template unless config_file.exist?
+    (etc/"lab-agent-drone/config.toml.example").write config_template
     
     # Install completion scripts if they exist
     if (buildpath/"completions").exist?

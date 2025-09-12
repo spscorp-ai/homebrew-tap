@@ -1,35 +1,35 @@
-class LabAgentDroneLatest < Formula
-  desc "Fault-tolerant RPC agent drone for executing coding commands (Latest/Development) (Stable)"
+class LabAgentDroneRc < Formula
+  desc "Fault-tolerant RPC agent drone for executing coding commands (Release Candidate)"
   homepage "https://github.com/spscorp/lab-agent-drone"
   license "MIT"
-  version "0.1.4-alpha.30"
+  version "0.1.4-alpha.29"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-darwin-arm64.tar.gz"
-      sha256 "147fdcb4bf87bc8466a31fd02e66454b0219bb1b7c45715ac81f6bc662ff266b"
+      sha256 "b8e1c2f3a9876543210fedcba098765432109876543210fedcba0987654321"
     end
     if Hardware::CPU.intel?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-darwin-amd64.tar.gz"
-      sha256 "1b015b5de35a2f04f94ab6ffed44a5399b37ebb4cfcc5e790da3c9b3b2f15dfa"
+      sha256 "a7d0b1e2c3f4567890abcdef123456789012345678901234567890abcdef12"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-linux-arm64.tar.gz"
-      sha256 "96a7d77873d63d708561030371f83339e1025d086a7b5377d92cc121e359517a"
+      sha256 "c9f8e7d6a5b4321098765432109876543210987654321098765432109876"
     end
     if Hardware::CPU.intel?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-linux-amd64.tar.gz"
-      sha256 "7ed9f87badff1bc9156182e1e3a0edbff8e0c33cf7b91ae60674ebd1af9ba492"
+      sha256 "e1f2a3b4c5d6789012345678901234567890123456789012345678901234"
     end
   end
 
   depends_on "git" # Required for git repository detection
 
   conflicts_with "lab-agent-drone", because: "both install lab-agent-drone binary"
-  conflicts_with "lab-agent-drone-rc", because: "both install lab-agent-drone binary"
+  conflicts_with "lab-agent-drone-latest", because: "both install lab-agent-drone binary"
 
   def install
     bin.install "lab-agent-drone"

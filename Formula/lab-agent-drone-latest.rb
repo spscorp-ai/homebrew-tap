@@ -36,7 +36,8 @@ class LabAgentDroneLatest < Formula
     
     # Install default configuration template
     (etc/"lab-agent-drone").mkpath
-    (etc/"lab-agent-drone/config.toml.example").write config_template
+    config_file = etc/"lab-agent-drone/config.toml.example"
+    config_file.write config_template unless config_file.exist?
     
     # Install completion scripts if they exist
     if (buildpath/"completions").exist?

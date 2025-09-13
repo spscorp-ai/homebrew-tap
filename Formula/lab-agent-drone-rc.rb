@@ -1,39 +1,39 @@
 class LabAgentDroneRc < Formula
-  desc "Fault-tolerant RPC agent drone for executing coding commands (Release Candidate)"
+  desc "Fault-tolerant RPC agent drone for executing coding commands (Release Candidates) (Stable)"
   homepage "https://github.com/spscorp/lab-agent-drone"
   license "MIT"
-  version "0.1.4-alpha.29"
+  version "0.1.5-rc.1"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-darwin-arm64.tar.gz"
-      sha256 "b8e1c2f3a9876543210fedcba098765432109876543210fedcba0987654321"
+      sha256 "5a7bebfd37774e60271c9475a3b1b09671d07bfc6de6e537a06654b4ed86afa5"
     end
     if Hardware::CPU.intel?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-darwin-amd64.tar.gz"
-      sha256 "a7d0b1e2c3f4567890abcdef123456789012345678901234567890abcdef12"
+      sha256 "907e87df7c0c62c541efe64f41b9c26acb62945af49d0933bf43e5138d450b24"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-linux-arm64.tar.gz"
-      sha256 "c9f8e7d6a5b4321098765432109876543210987654321098765432109876"
+      sha256 "f348fbe271054752d261401ead80d0334711c7c233ffe3e6fca0da845d5e808c"
     end
     if Hardware::CPU.intel?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-linux-amd64.tar.gz"
-      sha256 "e1f2a3b4c5d6789012345678901234567890123456789012345678901234"
+      sha256 "97e3809909325878ed4b2fc49377e6c0519f6aa5eabc639d36af7a2490bb2876"
     end
   end
 
   depends_on "git" # Required for git repository detection
 
-  conflicts_with "lab-agent-drone", because: "both install lab-agent-drone binary"
+  conflicts_with "lab-agent-drone-rc", because: "both install lab-agent-drone binary"
   conflicts_with "lab-agent-drone-latest", because: "both install lab-agent-drone binary"
 
   def install
     bin.install "lab-agent-drone"
-    
+
     # Install default configuration template
     (etc/"lab-agent-drone").mkpath
     config_file = etc/"lab-agent-drone/config.toml.example"

@@ -2,27 +2,27 @@ class LabAgentDroneLatest < Formula
   desc "Fault-tolerant RPC agent drone for executing coding commands (Latest/Development) (Stable)"
   homepage "https://github.com/spscorp/lab-agent-drone"
   license "MIT"
-  version "0.1.5-rc.1"
+  version "0.1.6"
 
   on_macos do
     if Hardware::CPU.arm?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-darwin-arm64.tar.gz"
-      sha256 "5a7bebfd37774e60271c9475a3b1b09671d07bfc6de6e537a06654b4ed86afa5"
+      sha256 "4e63f277346d42ccf7de80d24ccff03b0525adff36725c5304da8a8934347259"
     end
     if Hardware::CPU.intel?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-darwin-amd64.tar.gz"
-      sha256 "907e87df7c0c62c541efe64f41b9c26acb62945af49d0933bf43e5138d450b24"
+      sha256 "3e8e6d19bd95af1124cad7e60d92de2e5f368cf192d3ce471be2ddb090b8ec13"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-linux-arm64.tar.gz"
-      sha256 "f348fbe271054752d261401ead80d0334711c7c233ffe3e6fca0da845d5e808c"
+      sha256 "8a93f6a792731bced8690c709e5f4942a1f9deb51cbc04a26c52d3c82112812e"
     end
     if Hardware::CPU.intel?
       url "https://packages.buildinlab.ai/homebrew/lab-agent-drone-v#{version}-linux-amd64.tar.gz"
-      sha256 "97e3809909325878ed4b2fc49377e6c0519f6aa5eabc639d36af7a2490bb2876"
+      sha256 "0bb6502885c45009b0669dfa25721e9c7977961378967ba4083f6e71590568d5"
     end
   end
 
